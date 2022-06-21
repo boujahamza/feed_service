@@ -6,8 +6,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const articleServiceHost = "http://localhost:3000/article/feed";
-const reviewServiceHost = "http://localhost:4001/feed";
+const articleServiceHost = process.env.ARTICLEFEEDHOST//"http://localhost:3000/article/feed";
+const reviewServiceHost = process.env.REVIEWFEEDHOST//"http://localhost:4001/feed";
 
 app.get("/", async (req, res) => {
     console.log("received request for feed");
