@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: articles-deployment
+  name: feed-deployment
   labels:
-    app: articles
+    app: feed
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: articles
+      app: feed
   template:
     metadata:
       labels:
-        app: articles
+        app: feed
     spec:
       containers:
-      - name: articles
-        image: streamio.azurecr.io/streamio-backend_articles:v1
+      - name: feed
+        image: streamio.azurecr.io/streamio-backend_feed:latest
         env:
           - name: ARTICLEFEEDHOST
             value: 10.0.188.79:3000
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: articles-service
+  name: feed-service
 spec:
   selector:
-    app: articles
+    app: feed
   ports:
-    - port: 3000
-      targetPort: 3000
+    - port: 4005
+      targetPort: 4005
